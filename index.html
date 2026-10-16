@@ -113,7 +113,7 @@
           <span
             class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-medium bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/60"
           >
-            v0.1.9
+            v0.1.11
           </span>
         </a>
 
@@ -263,7 +263,7 @@
         <div
           class="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 shadow-2xl overflow-hidden"
         >
-          <!-- HeaderBar (Simulating TermX 32px Bar) -->
+          <!-- HeaderBar (Simulating TermX 30px Bar) -->
           <div
             id="mockHeader"
             class="mock-header h-8 bg-zinc-100 dark:bg-[#181825] border-b border-zinc-200 dark:border-white/10 flex items-center justify-between px-0 select-none transition-colors duration-200"
@@ -273,14 +273,14 @@
               <button
                 id="mockSidebarToggle"
                 class="w-8 h-8 flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-white/10 text-zinc-700 dark:text-zinc-300 transition-colors"
-                title="Toggle Sidebar (F9)"
+                title="Toggle Sidebar (Ctrl+B)"
               >
                 <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
               </button>
               <button
                 onclick="addNewMockTab()"
                 class="w-8 h-8 flex items-center justify-center hover:bg-zinc-200 dark:hover:bg-white/10 text-zinc-700 dark:text-zinc-300 transition-colors"
-                title="New Tab (Ctrl+Shift+T)"
+                title="New Tab (Ctrl+T)"
               >
                 <i data-lucide="plus" class="w-3.5 h-3.5"></i>
               </button>
@@ -289,7 +289,7 @@
             <!-- Middle: Tab Bar -->
             <div
               id="mockTabBar"
-              class="flex-1 flex items-center gap-1 px-2 overflow-x-auto h-full"
+              class="flex-1 flex items-center gap-0 overflow-x-auto h-full"
             >
               <div
                 class="mock-tab active px-3 h-6 flex items-center gap-1.5 rounded bg-white dark:bg-[#1e1e2e] border border-zinc-300 dark:border-white/15 text-[13px] font-bold text-zinc-900 dark:text-zinc-100 cursor-pointer"
@@ -384,7 +384,7 @@
             <!-- Collapsible Sidebar -->
             <div
               id="mockSidebar"
-              class="hidden w-44 border-r border-zinc-800 bg-[#13131e] p-3 flex flex-col gap-3 shrink-0 transition-colors duration-200"
+              class="hidden w-44 bg-[#13131e] p-3 flex flex-col gap-3 shrink-0 transition-colors duration-200"
             >
               <div>
                 <div class="flex items-center justify-between mb-1">
@@ -469,7 +469,7 @@
                   ██
                 </div>
                 <p class="text-zinc-400">
-                  Welcome to TermX (Nexus Terminal) v0.1.9
+                  Welcome to TermX (Nexus Terminal) v0.1.11
                 </p>
                 <p class="text-zinc-500 text-[11px]">
                   Type <span class="text-teal-400 font-bold">specs</span>,
@@ -604,7 +604,7 @@
                 <span class="truncate">sudo dpkg -i ./termx_*.deb</span>
                 <button
                   onclick="
-                    copyCommand('sudo dpkg -i ./termx_0.1.9_amd64.deb', this)
+                    copyCommand('sudo dpkg -i ./termx_0.1.11_amd64.deb', this)
                   "
                   class="text-zinc-500 hover:text-zinc-100"
                   title="Copy"
@@ -613,7 +613,7 @@
                 </button>
               </div>
               <a
-                href="public/termx_0.1.9_amd64.deb"
+                href="public/termx_0.1.11_amd64.deb"
                 download
                 class="w-full text-center py-1.5 rounded-md text-xs font-medium bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-900 transition-colors flex items-center justify-center gap-1.5"
               >
@@ -657,7 +657,7 @@
                 <span class="truncate">sudo rpm -i ./termx-*.rpm</span>
                 <button
                   onclick="
-                    copyCommand('sudo rpm -i ./termx-0.1.9-1.x86_64.rpm', this)
+                    copyCommand('sudo rpm -i ./termx-0.1.11-1.x86_64.rpm', this)
                   "
                   class="text-zinc-500 hover:text-zinc-100"
                   title="Copy"
@@ -666,7 +666,7 @@
                 </button>
               </div>
               <a
-                href="public/termx-0.1.9-1.x86_64.rpm"
+                href="public/termx-0.1.11-1.x86_64.rpm"
                 download
                 class="w-full text-center py-1.5 rounded-md text-xs font-medium bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-900 transition-colors flex items-center justify-center gap-1.5"
               >
@@ -711,7 +711,7 @@
                 <button
                   onclick="
                     copyCommand(
-                      'chmod +x ./termx-0.1.9-x86_64.AppImage && ./termx-0.1.9-x86_64.AppImage',
+                      'chmod +x ./termx-0.1.11-x86_64.AppImage && ./termx-0.1.11-x86_64.AppImage',
                       this,
                     )
                   "
@@ -722,7 +722,7 @@
                 </button>
               </div>
               <a
-                href="public/termx-0.1.9-x86_64.AppImage"
+                href="public/termx-0.1.11-x86_64.AppImage"
                 download
                 class="w-full text-center py-1.5 rounded-md text-xs font-medium bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-900 transition-colors flex items-center justify-center gap-1.5"
               >
@@ -782,7 +782,7 @@
             </h3>
             <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
               Split horizontal or vertical with independent shell processes and
-              navigate boundaries using Alt+Arrow keys.
+              navigate boundaries using Alt+[/] or Alt+Arrow keys.
             </p>
           </div>
 
@@ -798,8 +798,8 @@
               Collapsible Sessions Sidebar
             </h3>
             <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              F9 toggleable sidebar with active pane counters, quick shell
-              launchers (Fish, Bash), and instant theme picker.
+              Ctrl+B / F9 toggleable sidebar with active pane counters, quick
+              shell launchers (Fish, Bash), and instant theme picker.
             </p>
           </div>
 
@@ -850,7 +850,7 @@
               Poppins UI Typography
             </h3>
             <p class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Modern bold Poppins UI font with 32px height standard on all
+              Modern bold Poppins UI font with 30px height standard on all
               inputs, buttons, and tab controls.
             </p>
           </div>
@@ -919,7 +919,7 @@
                   <td class="py-2 px-3">
                     <kbd
                       class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
-                      >Ctrl+Shift+T</kbd
+                      >Ctrl+T</kbd
                     >
                   </td>
                   <td class="py-2 px-3 font-sans text-zinc-500">Tabs</td>
@@ -935,7 +935,23 @@
                   <td class="py-2 px-3">
                     <kbd
                       class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
-                      >Ctrl+Shift+W</kbd
+                      >Ctrl+W</kbd
+                    >
+                  </td>
+                  <td class="py-2 px-3 font-sans text-zinc-500">Tabs</td>
+                </tr>
+                <tr
+                  class="shortcut-row hover:bg-zinc-50 dark:hover:bg-zinc-900/50"
+                >
+                  <td
+                    class="py-2 px-3 font-sans font-medium text-zinc-900 dark:text-zinc-100"
+                  >
+                    Close Window
+                  </td>
+                  <td class="py-2 px-3">
+                    <kbd
+                      class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
+                      >Shift+Ctrl+W</kbd
                     >
                   </td>
                   <td class="py-2 px-3 font-sans text-zinc-500">Tabs</td>
@@ -951,12 +967,12 @@
                   <td class="py-2 px-3">
                     <kbd
                       class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
-                      >Ctrl+PageDown</kbd
+                      >Ctrl+.</kbd
                     >
                     /
                     <kbd
                       class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
-                      >Ctrl+PageUp</kbd
+                      >Ctrl+,</kbd
                     >
                   </td>
                   <td class="py-2 px-3 font-sans text-zinc-500">Tabs</td>
@@ -972,7 +988,7 @@
                   <td class="py-2 px-3">
                     <kbd
                       class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
-                      >Ctrl+Shift+E</kbd
+                      >Shift+Ctrl+N</kbd
                     >
                   </td>
                   <td class="py-2 px-3 font-sans text-zinc-500">Panes</td>
@@ -988,7 +1004,7 @@
                   <td class="py-2 px-3">
                     <kbd
                       class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
-                      >Ctrl+Shift+O</kbd
+                      >Shift+Ctrl+M</kbd
                     >
                   </td>
                   <td class="py-2 px-3 font-sans text-zinc-500">Panes</td>
@@ -1004,7 +1020,7 @@
                   <td class="py-2 px-3">
                     <kbd
                       class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
-                      >Ctrl+Shift+X</kbd
+                      >Shift+Ctrl+X</kbd
                     >
                   </td>
                   <td class="py-2 px-3 font-sans text-zinc-500">Panes</td>
@@ -1020,12 +1036,12 @@
                   <td class="py-2 px-3">
                     <kbd
                       class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
-                      >Alt+Left</kbd
+                      >Alt+]</kbd
                     >
                     /
                     <kbd
                       class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
-                      >Alt+Right</kbd
+                      >Alt+[</kbd
                     >
                   </td>
                   <td class="py-2 px-3 font-sans text-zinc-500">Panes</td>
@@ -1039,6 +1055,11 @@
                     Toggle Sidebar
                   </td>
                   <td class="py-2 px-3">
+                    <kbd
+                      class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
+                      >Ctrl+B</kbd
+                    >
+                    /
                     <kbd
                       class="px-1.5 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 text-[11px]"
                       >F9</kbd
