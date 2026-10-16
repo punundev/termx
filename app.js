@@ -400,12 +400,12 @@ window.previewTheme = function (themeKey) {
   }
 
   // Also style prompt tags
-  const promptUser = document.querySelector(
-    "#mockTerminalForm span:first-child",
-  );
-  const promptArrow = document.querySelector(
-    "#mockTerminalForm span:nth-child(2)",
-  );
+  const promptUser =
+    document.getElementById("mockPromptUser") ||
+    document.querySelector("#mockTerminalForm span:first-child");
+  const promptArrow =
+    document.getElementById("mockPromptArrow") ||
+    document.querySelector("#mockTerminalForm span:nth-child(2)");
   if (promptUser) promptUser.style.color = theme.prompt;
   if (promptArrow) promptArrow.style.color = theme.accent;
 
@@ -435,6 +435,10 @@ window.handleMockSubmit = function (event) {
   const entry = document.createElement("div");
   entry.className = "space-y-1 text-xs";
   entry.innerHTML = `
+    <div class="flex items-center justify-between text-[11px] font-mono select-none">
+      <span class="text-teal-400/80">phanun-soun</span>
+      <span class="text-zinc-500">0ms &nbsp; 12:56 PM</span>
+    </div>
     <div class="flex items-center gap-2">
       <span class="text-emerald-400">⚡phanun</span>
       <span class="text-teal-400">❯❯</span>

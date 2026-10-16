@@ -8,7 +8,7 @@
       name="description"
       content="TermX (Nexus Terminal) is a fast, keyboard-centric native Linux terminal emulator built with Go, GTK4, Libadwaita, and VTE."
     />
-    <meta name="theme-color" content="#09090b" />
+    <meta name="theme-color" content="#141620" />
 
     <meta property="og:type" content="website" />
     <meta
@@ -54,9 +54,11 @@
                 950: "#042f2e",
               },
               zinc: {
-                850: "#1c1c20",
-                925: "#121215",
-                950: "#09090b",
+                800: "#2f354c",
+                850: "#282d41",
+                900: "#212536",
+                925: "#1b1e2b",
+                950: "#141620",
               },
             },
             fontFamily: {
@@ -88,11 +90,47 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #3f3f46;
       }
+      .bg-grid-pattern {
+        background-size: 44px 44px;
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(24, 24, 27, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(24, 24, 27, 0.05) 1px,
+            transparent 1px
+          );
+      }
+      .dark .bg-grid-pattern,
+      html.dark .bg-grid-pattern {
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          );
+      }
     </style>
   </head>
   <body
-    class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 min-h-screen flex flex-col selection:bg-teal-500/20 selection:text-teal-400"
+    class="bg-zinc-50 dark:bg-zinc-950 bg-grid-pattern text-zinc-900 dark:text-zinc-100 min-h-screen flex flex-col selection:bg-teal-500/20 selection:text-teal-400 relative overflow-x-hidden"
   >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-[480px] z-0 flex justify-center overflow-hidden"
+      aria-hidden="true"
+    >
+      <div
+        class="w-[760px] h-[380px] -top-24 relative bg-gradient-to-b from-teal-500/15 via-emerald-500/5 to-transparent blur-3xl opacity-70 rounded-full"
+      ></div>
+    </div>
     <!-- Top Navbar -->
     <header
       class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-zinc-950/80 border-b border-zinc-200 dark:border-zinc-800"
@@ -104,7 +142,7 @@
           <img
             src="termx.png"
             alt="TermX Logo"
-            class="size-10 rounded-md transition-transform group-hover:scale-105 shadow-sm border-b border-zinc-800"
+            class="size-10 rounded-md transition-transform group-hover:scale-105"
           />
           <span
             class="font-bold text-base tracking-tight text-zinc-900 dark:text-zinc-100"
@@ -186,7 +224,7 @@
 
     <!-- Hero Section -->
     <main
-      class="flex-1 max-w-6xl mx-auto px-4 py-8 w-full flex flex-col gap-10"
+      class="relative z-10 flex-1 max-w-6xl mx-auto px-4 py-8 w-full flex flex-col gap-10"
     >
       <section class="flex flex-col items-center text-center gap-4 pt-4">
         <div
@@ -379,7 +417,7 @@
 
           <!-- Terminal Body & Sidebar -->
           <div
-            class="flex h-72 sm:h-80 bg-zinc-950 text-zinc-100 font-mono text-xs overflow-hidden"
+            class="flex h-72 sm:h-80 bg-zinc-900 dark:bg-[#181825] text-zinc-100 font-mono text-xs overflow-hidden"
           >
             <!-- Collapsible Sidebar -->
             <div
@@ -461,13 +499,13 @@
               id="mockTerminalConsole"
             >
               <div class="space-y-1.5">
-                <div
-                  class="text-teal-400 font-mono text-[11px] leading-tight select-none whitespace-pre"
-                >
-                  ██████ █████ █████ ██ ██ ██ ██ ██ ██ ██ █ ███ ███ ████ ██ ████
-                  ████ ██ █ ██ ██ ██ ██ ██ █ ██ ██ ████ ██ █████ ██ █ ██ ██ ██
-                  ██
-                </div>
+                <pre
+                  class="text-teal-400 font-mono text-[11px] leading-tight select-none font-bold"
+                > ██████ █████ █████ ██   ██ ██  ██
+   ██   ██    ██  █ ███ ███  ████ 
+   ██   ████  ████  ██ █ ██   ██  
+   ██   ██    ██ █  ██   ██  ████ 
+   ██   █████ ██  █ ██   ██ ██  ██</pre>
                 <p class="text-zinc-400">
                   Welcome to TermX (Nexus Terminal) v0.1.11
                 </p>
@@ -485,18 +523,26 @@
               <form
                 id="mockTerminalForm"
                 onsubmit="handleMockSubmit(event)"
-                class="flex items-center gap-2 pt-2 border-t border-zinc-900"
+                class="flex flex-col gap-1 pt-2 border-t border-zinc-900"
               >
-                <span class="text-emerald-400">⚡phanun</span>
-                <span class="text-teal-400">❯❯</span>
-                <input
-                  id="mockTerminalInput"
-                  type="text"
-                  autocomplete="off"
-                  spellcheck="false"
-                  placeholder="type a command..."
-                  class="flex-1 bg-transparent text-zinc-100 outline-hidden font-mono text-xs"
-                />
+                <div
+                  class="flex items-center justify-between text-[11px] font-mono select-none"
+                >
+                  <span class="text-teal-400/80">phanun-soun</span>
+                  <span class="text-zinc-500">0ms &nbsp; 12:56 PM</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span id="mockPromptUser" class="text-emerald-400">⚡phanun</span>
+                  <span id="mockPromptArrow" class="text-teal-400">❯❯</span>
+                  <input
+                    id="mockTerminalInput"
+                    type="text"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="type a command..."
+                    class="flex-1 bg-transparent text-zinc-100 outline-hidden font-mono text-xs"
+                  />
+                </div>
               </form>
             </div>
 
@@ -1591,7 +1637,7 @@ sidebar_visible = true
 
     <!-- Footer -->
     <footer
-      class="border-t border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-950/50 mt-auto select-none"
+      class="relative z-10 border-t border-zinc-200 dark:border-zinc-800 bg-white/50 dark:bg-zinc-950/50 mt-auto select-none"
     >
       <div
         class="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs text-zinc-500 dark:text-zinc-400"
