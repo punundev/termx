@@ -260,7 +260,7 @@
             class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-teal-600 hover:bg-teal-500 text-white shadow-xs transition-colors"
           >
             <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            Download Packages (.deb, .rpm, .AppImage)
+            Download Packages (.deb, .rpm, .AppImage, .apk)
           </a>
           <a
             href="#features"
@@ -598,7 +598,7 @@
         </div>
       </section>
 
-      <!-- 3 Package Formats Section (Deb, RPM, AppImage) -->
+      <!-- Package Formats Section (Deb, RPM, AppImage, APK) -->
       <section id="packages" class="flex flex-col gap-4">
         <div class="flex flex-col gap-1">
           <div class="flex items-center gap-2">
@@ -615,7 +615,7 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <!-- Debian / Ubuntu -->
           <div
             class="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-925 p-4 flex flex-col justify-between gap-3 shadow-xs"
@@ -774,6 +774,62 @@
               >
                 <i data-lucide="download" class="w-3.5 h-3.5"></i>
                 Download .AppImage
+              </a>
+            </div>
+          </div>
+
+          <!-- Android OS -->
+          <div
+            class="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-925 p-4 flex flex-col justify-between gap-3 shadow-xs"
+          >
+            <div class="flex flex-col gap-1.5">
+              <div class="flex items-center justify-between">
+                <span
+                  class="font-semibold text-sm text-zinc-900 dark:text-zinc-100 flex items-center gap-2"
+                >
+                  <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+                  Android OS
+                </span>
+                <span
+                  class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400"
+                  >.apk</span
+                >
+              </div>
+              <p
+                class="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed"
+              >
+                Native mobile terminal emulator with PTY engine, Dropbear SSH,
+                and curl utilities.
+              </p>
+            </div>
+
+            <div
+              class="flex flex-col gap-2 pt-1 border-t border-zinc-100 dark:border-zinc-800/80"
+            >
+              <div
+                class="flex items-center justify-between px-2.5 py-1.5 rounded bg-zinc-100 dark:bg-zinc-900 text-[11px] font-mono text-zinc-700 dark:text-zinc-300"
+              >
+                <span class="truncate">adb install ./app-release.apk</span>
+                <button
+                  onclick="
+                    copyCommand(
+                      'adb install -r ./app-release.apk',
+                      this,
+                    )
+                  "
+                  class="text-zinc-500 hover:text-zinc-100"
+                  title="Copy"
+                >
+                  <i data-lucide="copy" class="w-3 h-3"></i>
+                </button>
+              </div>
+              <a
+                href="public/app-release.apk"
+                download
+                class="w-full text-center py-1.5 rounded-md text-xs font-medium bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-zinc-200 text-white dark:text-zinc-900 transition-colors flex items-center justify-center gap-1.5"
+              >
+                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                Download .apk
               </a>
             </div>
           </div>
