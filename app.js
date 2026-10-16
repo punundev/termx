@@ -478,7 +478,7 @@ window.handleMockSubmit = function (event) {
         <div class="text-teal-400 font-bold">TermX System Specifications</div>
         <pre class="text-[11px] font-mono text-zinc-300 leading-tight mt-1">
   <span class="text-teal-400">OS:</span> Linux x86_64
-  <span class="text-teal-400">Host:</span> Nexus Terminal (TermX) v0.1.11
+  <span class="text-teal-400">Host:</span> Nexus Terminal (TermX) v0.1.12
   <span class="text-teal-400">Runtime:</span> Go 1.24+ (CGo / GTK4 / VTE)
   <span class="text-teal-400">Toolkit:</span> GTK4 (4.12+) &amp; Libadwaita (1.4+)
   <span class="text-teal-400">Terminal Core:</span> VTE (vte4 0.74+) with 24-bit TrueColor
@@ -514,7 +514,7 @@ window.handleMockSubmit = function (event) {
       return;
 
     case "version":
-      response.innerHTML = `<span>TermX (Nexus Terminal) 0.1.11 (x86_64-linux, go1.24+)</span>`;
+      response.innerHTML = `<span>TermX (Nexus Terminal) 0.1.12 (x86_64-linux, go1.24+)</span>`;
       break;
 
     case "date":
