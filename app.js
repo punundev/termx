@@ -17,24 +17,70 @@ function initLucide() {
   }
 }
 
-// Dark / Light Mode Toggle
 function initTheme() {
   const themeToggleBtn = document.getElementById("themeToggleBtn");
-  const savedTheme = localStorage.getItem("termx-docs-theme");
+  const savedTheme = localStorage.getItem("termx-docs-theme") || "dark";
 
-  if (savedTheme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else {
-    document.documentElement.classList.add("dark");
-  }
+  applyDocsTheme(savedTheme, false);
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener("click", () => {
-      const isDark = document.documentElement.classList.toggle("dark");
-      localStorage.setItem("termx-docs-theme", isDark ? "dark" : "light");
-      initLucide();
+      const current = localStorage.getItem("termx-docs-theme") || "dark";
+      let next = "synthwave";
+      if (current === "dark") {
+        next = "synthwave";
+      } else if (current === "synthwave") {
+        next = "light";
+      } else {
+        next = "dark";
+      }
+      applyDocsTheme(next, true);
     });
   }
+}
+
+function applyDocsTheme(theme, notify) {
+  const root = document.documentElement;
+  root.classList.remove("dark", "theme-synthwave");
+
+  if (theme === "synthwave") {
+    root.classList.add("dark", "theme-synthwave");
+    if (typeof previewTheme === "function") {
+      previewTheme("synthwave-84");
+    }
+    if (notify) {
+      showToast("Switched to Synthwave (Special Colorful Theme)!");
+    }
+  } else if (theme === "light") {
+    if (notify) {
+      showToast("Switched to Light Theme");
+    }
+  } else {
+    root.classList.add("dark");
+    if (notify) {
+      showToast("Switched to Dark Theme");
+    }
+  }
+
+  localStorage.setItem("termx-docs-theme", theme);
+  updateThemeToggleIcon(theme);
+}
+
+function updateThemeToggleIcon(theme) {
+  const themeToggleBtn = document.getElementById("themeToggleBtn");
+  if (!themeToggleBtn) return;
+
+  if (theme === "synthwave") {
+    themeToggleBtn.innerHTML = '<i data-lucide="sparkles" class="w-4 h-4 text-pink-400"></i>';
+    themeToggleBtn.setAttribute("title", "Theme: Synthwave Neon (Click for Light)");
+  } else if (theme === "light") {
+    themeToggleBtn.innerHTML = '<i data-lucide="moon" class="w-4 h-4 text-zinc-600"></i>';
+    themeToggleBtn.setAttribute("title", "Theme: Light (Click for Dark)");
+  } else {
+    themeToggleBtn.innerHTML = '<i data-lucide="sun" class="w-4 h-4 text-amber-400"></i>';
+    themeToggleBtn.setAttribute("title", "Theme: Dark (Click for Synthwave Neon)");
+  }
+  initLucide();
 }
 
 // Copy to Clipboard with Visual Feedback
@@ -89,6 +135,14 @@ function fallbackCopy(text) {
 function initShortcutsFilter() {
   const input = document.getElementById("shortcutSearch");
   if (!input) return;
+
+  input.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")) {
+      e.preventDefault();
+      input.value = "";
+      input.dispatchEvent(new Event("input"));
+    }
+  });
 
   input.addEventListener("input", (e) => {
     const query = e.target.value.toLowerCase().trim();
@@ -362,6 +416,14 @@ const THEMES = {
     sidebarBg: "#221f22",
     headerBg: "#2d2a2e",
   },
+  "synthwave-84": {
+    bg: "#16161e",
+    fg: "#2dd4bf",
+    prompt: "#2ed573",
+    accent: "#ff4757",
+    sidebarBg: "#121218",
+    headerBg: "#16161e",
+  },
 };
 
 window.previewTheme = function (themeKey) {
@@ -409,6 +471,12 @@ window.previewTheme = function (themeKey) {
   if (promptUser) promptUser.style.color = theme.prompt;
   if (promptArrow) promptArrow.style.color = theme.accent;
 
+  const inputEl = document.getElementById("mockTerminalInput");
+  if (inputEl) inputEl.style.color = theme.fg;
+
+  const bannerEl = document.querySelector("#mockTerminalConsole pre");
+  if (bannerEl) bannerEl.style.color = theme.fg;
+
   showToast(`Switched terminal preview theme to "${themeKey}"`);
 };
 
@@ -417,6 +485,13 @@ function initMockTerminal() {
   const form = document.getElementById("mockTerminalForm");
   const input = document.getElementById("mockTerminalInput");
   if (!form || !input) return;
+
+  input.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")) {
+      e.preventDefault();
+      input.value = "";
+    }
+  });
 
   input.focus();
 }
@@ -440,9 +515,9 @@ window.handleMockSubmit = function (event) {
       <span class="text-zinc-500">0ms &nbsp; 12:56 PM</span>
     </div>
     <div class="flex items-center gap-2">
-      <span class="text-emerald-400">⚡phanun</span>
-      <span class="text-teal-400">❯❯</span>
-      <span class="text-zinc-100 font-bold">${escapeHtml(cmd)}</span>
+      <span style="color: ${document.getElementById('mockPromptUser')?.style.color || '#2ed573'}">⚡phanun</span>
+      <span style="color: ${document.getElementById('mockPromptArrow')?.style.color || '#ff4757'}">❯❯</span>
+      <span style="color: ${document.getElementById('mockTerminalInput')?.style.color || '#2dd4bf'}" class="font-bold">${escapeHtml(cmd)}</span>
     </div>
   `;
 
@@ -462,7 +537,7 @@ window.handleMockSubmit = function (event) {
           <div><span class="text-teal-300 font-bold">help</span> — Show command manual</div>
           <div><span class="text-teal-300 font-bold">specs</span> — Display hardware &amp; build specs</div>
           <div><span class="text-teal-300 font-bold">neofetch</span> — Print TermX system banner</div>
-          <div><span class="text-teal-300 font-bold">themes</span> — List all 12 built-in themes</div>
+          <div><span class="text-teal-300 font-bold">themes</span> — List all 13 built-in themes</div>
           <div><span class="text-teal-300 font-bold">theme &lt;name&gt;</span> — Change current theme</div>
           <div><span class="text-teal-300 font-bold">clear</span> — Wipe terminal output</div>
           <div><span class="text-teal-300 font-bold">version</span> — Show TermX release info</div>
@@ -478,7 +553,7 @@ window.handleMockSubmit = function (event) {
         <div class="text-teal-400 font-bold">TermX System Specifications</div>
         <pre class="text-[11px] font-mono text-zinc-300 leading-tight mt-1">
   <span class="text-teal-400">OS:</span> Linux x86_64
-  <span class="text-teal-400">Host:</span> Nexus Terminal (TermX) v0.1.12
+  <span class="text-teal-400">Host:</span> Nexus Terminal (TermX) v0.1.13
   <span class="text-teal-400">Runtime:</span> Go 1.24+ (CGo / GTK4 / VTE)
   <span class="text-teal-400">Toolkit:</span> GTK4 (4.12+) &amp; Libadwaita (1.4+)
   <span class="text-teal-400">Terminal Core:</span> VTE (vte4 0.74+) with 24-bit TrueColor
@@ -494,8 +569,8 @@ window.handleMockSubmit = function (event) {
     case "themes":
       response.innerHTML = `
         <div class="text-teal-400 font-semibold mb-1">Built-in Themes:</div>
-        <p class="text-zinc-300 text-[11px]">kitty-dark, nord, dracula, catppuccin-mocha, gruvbox-dark, solarized-dark, solarized-light, clean-light, tokyo-night, one-dark, rose-pine, monokai-pro</p>
-        <p class="text-zinc-500 text-[10px] mt-1">Usage: <code class="text-teal-400">theme nord</code> or click any card in the themes gallery below.</p>
+        <p class="text-zinc-300 text-[11px]">kitty-dark, nord, dracula, catppuccin-mocha, gruvbox-dark, solarized-dark, solarized-light, clean-light, tokyo-night, one-dark, rose-pine, monokai-pro, synthwave-84</p>
+        <p class="text-zinc-500 text-[10px] mt-1">Usage: <code class="text-teal-400">theme synthwave-84</code> or click any card in the themes gallery below.</p>
       `;
       break;
 
@@ -514,7 +589,7 @@ window.handleMockSubmit = function (event) {
       return;
 
     case "version":
-      response.innerHTML = `<span>TermX (Nexus Terminal) 0.1.12 (x86_64-linux, go1.24+)</span>`;
+      response.innerHTML = `<span>TermX (Nexus Terminal) 0.1.13 (x86_64-linux, go1.24+)</span>`;
       break;
 
     case "date":
